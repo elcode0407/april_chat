@@ -1,0 +1,4 @@
+# Project exclude paths
+/april_chat/chat-common/target/
+/april_chat/chat_client/target/
+/april_chat/chat_server/target/
