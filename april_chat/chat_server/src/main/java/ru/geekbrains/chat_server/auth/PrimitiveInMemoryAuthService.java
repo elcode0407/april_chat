@@ -8,6 +8,7 @@ public class PrimitiveInMemoryAuthService implements AuthService {
 
     private List<User> users;
 
+
     public PrimitiveInMemoryAuthService() {
         this.users = new ArrayList<>(
                 Arrays.asList(

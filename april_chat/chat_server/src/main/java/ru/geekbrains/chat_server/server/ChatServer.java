@@ -16,13 +16,14 @@ public class ChatServer {
     private List<ClientHandler> listOnlineUsers;
     private AuthService authService;
     static long b;
+
     public ChatServer() {
         this.listOnlineUsers = new ArrayList<>();
         this.authService = new PrimitiveInMemoryAuthService();
     }
 
     public void start() {
-        try(ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Server started");
             authService.start();
 
@@ -61,7 +62,7 @@ public class ChatServer {
 
     public void sendPrivateMessage(ChatMessage message) {
         for (ClientHandler user : listOnlineUsers) {
-          if (user.getCurrentName().equals(message.getTo())) user.sendMessage(message);
+            if (user.getCurrentName().equals(message.getTo())) user.sendMessage(message);
         }
     }
 

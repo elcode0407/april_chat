@@ -3,6 +3,7 @@ package ru.geekbrains.chat_server.auth;
 import ru.geekbrains.chat.client.network.MessageProcessor;
 
 public interface AuthService {
+
     void start();
     void stop();
     String getUsernameByLoginAndPassword(String login, String password);

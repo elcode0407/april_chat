@@ -19,6 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/scene.fxml"));
         Parent root = loader.load();

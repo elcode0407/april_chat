@@ -77,6 +77,7 @@
                     <Insets left="3.0" />
                 </opaqueInsets></TextArea>
             <TextArea fx:id="myChatArea" editable="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="461.0" prefWidth="256.0" style="-fx-border-color: white;" styleClass="myChatArea" stylesheets="css2.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
                 <HBox.margin>
                     <Insets />
                 </HBox.margin>

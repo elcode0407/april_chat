@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class ChatMessage {
+
     private MessageType messageType;
     private String body;
     private String from;

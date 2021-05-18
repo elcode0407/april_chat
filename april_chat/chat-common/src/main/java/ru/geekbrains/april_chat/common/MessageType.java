@@ -1,6 +1,7 @@
 package ru.geekbrains.april_chat.common;
 
 public enum MessageType {
+
     PUBLIC,
     PRIVATE,
     CLIENT_LIST,

@@ -22,6 +22,7 @@ public class ClientHandler {
     private DataInputStream inputStream;
     private String currentUsername;
     private static final long AUTH_TIMEOUT = 10_000;
+
     public ClientHandler(Socket socket, ChatServer chatServer) {
         try {
             this.chatServer = chatServer;
@@ -80,7 +81,8 @@ public class ClientHandler {
     public String getCurrentName() {
         return this.currentUsername;
     }
-    private synchronized void  authenticate() {
+
+    private synchronized void authenticate() {
 
         Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {

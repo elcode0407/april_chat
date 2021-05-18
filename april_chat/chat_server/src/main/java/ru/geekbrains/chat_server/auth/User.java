@@ -1,6 +1,7 @@
 package ru.geekbrains.chat_server.auth;
 
 public class User {
+
     private String username;
     private String login;
     private String password;

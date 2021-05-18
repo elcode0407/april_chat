@@ -16,6 +16,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
     @Override
     public void connect() {
+
         try {
             this.networkService = new NetworkService(host, port, this);
             networkService.readMessages();

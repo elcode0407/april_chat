@@ -19,6 +19,7 @@ public class NetworkService {
     }
 
     public void readMessages() {
+
         Thread t = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()){
                 try {

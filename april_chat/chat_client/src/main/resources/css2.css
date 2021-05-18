@@ -1,4 +1,5 @@
 .usersChatArea .scroll-pane {
+
     -fx-vbar-policy: NEVER;
 }
 .myChatArea .scroll-pane {

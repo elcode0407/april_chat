@@ -155,6 +155,7 @@ public class MainChatController implements Initializable, MessageProcessor {
 
     @Override
     public void processMessage(String msg) {
+
         Platform.runLater(() -> {
                     ChatMessage message = ChatMessage.unmarshall(msg);
                     System.out.println("Received message");
