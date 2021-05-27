@@ -64,6 +64,7 @@ public class MainChatController implements Initializable, MessageProcessor {
         } catch (RuntimeException e) {
             showError(e);
         }
+
     }
 
     public void exit(ActionEvent actionEvent) {

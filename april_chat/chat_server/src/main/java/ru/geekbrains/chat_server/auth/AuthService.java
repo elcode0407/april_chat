@@ -1,6 +1,7 @@
 package ru.geekbrains.chat_server.auth;
 
 public interface AuthService {
+
     void start();
     void stop();
     String getUsernameByLoginAndPassword(String login, String password);
