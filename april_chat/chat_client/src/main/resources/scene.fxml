@@ -5,60 +5,44 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="vbox" prefHeight="500" prefWidth="624.0" style="-fx-background-color: black;" stylesheets="css2.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.chat.client.MainChatController">
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: #07AAE1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.chat.client.MainChatController">
+<VBox fx:id="chatPane" visible="false">
     <children>
-        <MenuBar style="-fx-background-color: black;">
-            <Menu style="-fx-background-color: white;" text="File">
+        <MenuBar>
+            <Menu text="File">
                 <MenuItem onAction="#mockAction" text="Item1" />
                 <MenuItem onAction="#mockAction" text="Item2" />
                 <MenuItem onAction="#mockAction" text="Item3" />
                 <MenuItem onAction="#mockAction" text="Item4" />
                 <MenuItem onAction="#exit" text="Exit" />
             </Menu>
-            <Menu style="-fx-background-color: white;" text="Edit">
+            <Menu text="Edit">
+                <MenuItem onAction="#pressChangeNick" text="Change Username" />
+                <MenuItem onAction="#pressChangePassword" text="Change password" />
+                <MenuItem onAction="#mockAction" text="Item3" />
+                <MenuItem onAction="#mockAction" text="Item4" />
+                <MenuItem onAction="#mockAction" text="Item5" />
+            </Menu>
+            <Menu text="View">
                 <MenuItem onAction="#mockAction" text="Item1" />
                 <MenuItem onAction="#mockAction" text="Item2" />
                 <MenuItem onAction="#mockAction" text="Item3" />
                 <MenuItem onAction="#mockAction" text="Item4" />
                 <MenuItem onAction="#mockAction" text="Item5" />
             </Menu>
-            <Menu style="-fx-background-color: white;" text="View">
-                <MenuItem onAction="#mockAction" text="Item1" />
-                <MenuItem onAction="#mockAction" text="Item2" />
-                <MenuItem onAction="#mockAction" text="Item3" />
-                <MenuItem onAction="#mockAction" text="Item4" />
-                <MenuItem onAction="#mockAction" text="Item5" />
-            </Menu>
-            <Menu style="-fx-background-color: white;" text="Help">
+            <Menu text="Help">
                 <MenuItem onAction="#mockAction" text="Item1" />
                 <MenuItem onAction="#mockAction" text="Item2" />
                 <MenuItem onAction="#mockAction" text="Item3" />
                 <MenuItem onAction="#showHelp" text="Help" />
                 <MenuItem onAction="#showAbout" text="About" />
-
             </Menu>
             <VBox.margin>
                 <Insets left="3.0" top="6.0" />
             </VBox.margin>
 
         </MenuBar>
-        <HBox>
-            <TextField fx:id="loginField" promptText="Enter login..." style="-fx-border-color: black; -fx-border-radius: 4; -fx-background-color: #eaeaea;">
-                <HBox.margin>
-                    <Insets left="8.0" top="4.0" />
-                </HBox.margin></TextField>
-            <PasswordField fx:id="passwordField" promptText="Enter password..." style="-fx-border-color: black; -fx-border-radius: 4; -fx-background-color: #eaeaea;">
-                <HBox.margin>
-                    <Insets top="4.0" />
-                </HBox.margin></PasswordField>
-            <Button fx:id="btnSendAuth" onAction="#sendAuth" style="-fx-background-color: #ff9900;" text="Log In">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-                <HBox.margin>
-                    <Insets left="4.0" top="4.0" />
-                </HBox.margin></Button>
-        </HBox>
+
         <HBox prefHeight="471.0" prefWidth="705.0" VBox.vgrow="ALWAYS">
             <TextArea fx:id="usersChatArea" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="373.0" prefWidth="258.0" style="-fx-border-color: white;" styleClass="usersChatArea" stylesheets="css2.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                 <HBox.margin>
@@ -67,9 +51,6 @@
                 <padding>
                     <Insets right="3.0" />
                 </padding>
-
-
-
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -123,3 +104,125 @@
         </HBox>
     </children>
 </VBox>
+    <GridPane fx:id="loginPane" prefHeight="628.0" prefWidth="419.0" AnchorPane.rightAnchor="380.6666666666667">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <TextField fx:id="loginField" onAction="#sendAuth" prefHeight="61.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </TextField>
+            <PasswordField fx:id="passwordField" onAction="#sendAuth" prefHeight="64.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </PasswordField>
+            <Label prefHeight="39.0" prefWidth="210.0" text="   Enter your login:" textFill="WHITE" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="23.0" />
+                </font>
+            </Label>
+            <Label prefHeight="31.0" prefWidth="208.0" text="   Enter your password:" textFill="WHITE" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="19.0" />
+                </font>
+            </Label>
+            <Button fx:id="submitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendAuth" prefHeight="50.0" prefWidth="105.0" style="-fx-background-color: white;" text="Submit" textFill="#007de3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcom to Geek Chat!" textAlignment="CENTER" GridPane.columnIndex="1">
+            <font>
+               <Font name="System Bold" size="31.0" />
+            </font>
+         </Text>
+        </children>
+    </GridPane>
+    <GridPane fx:id="changeNickPane" layoutX="-1.0" layoutY="-1.0" prefHeight="628.0" prefWidth="418.0" visible="false">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <TextField fx:id="changeNickNewNick" onAction="#sendChangeUsername" prefHeight="61.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </TextField>
+            <PasswordField fx:id="changeNickPass" onAction="#sendChangeUsername" prefHeight="64.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </PasswordField>
+            <Label prefHeight="39.0" prefWidth="210.0" text="   Enter your new nick" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label prefHeight="31.0" prefWidth="208.0" text="   Enter your password:" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Button fx:id="submitNickButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendChangeUsername" prefHeight="50.0" prefWidth="105.0" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="backFromNick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressBack" prefHeight="30.0" prefWidth="58.0" text="Back" GridPane.rowIndex="4" />
+        </children>
+    </GridPane>
+    <GridPane fx:id="changePassPane" layoutY="-1.0" prefHeight="628.0" prefWidth="418.0" visible="false">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <PasswordField fx:id="oldPass" onAction="#sendChangePass" prefHeight="61.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </PasswordField>
+            <PasswordField fx:id="newPass" onAction="#sendChangePass" prefHeight="64.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets right="5.0" />
+                </GridPane.margin>
+            </PasswordField>
+            <Label prefHeight="39.0" prefWidth="210.0" text="   Enter your old pass" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label prefHeight="31.0" prefWidth="208.0" text="   Enter new password:" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Button fx:id="submitChangePass" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendChangePass" prefHeight="50.0" prefWidth="105.0" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="backFromPass" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressBack" prefHeight="30.0" prefWidth="58.0" text="Back" GridPane.rowIndex="4" />
+            <Label prefHeight="31.0" prefWidth="208.0" text="   Retnter new password:" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <PasswordField fx:id="confirmNewPass" onAction="#sendChangePass" prefHeight="64.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </children>
+    </GridPane>
+</AnchorPane>

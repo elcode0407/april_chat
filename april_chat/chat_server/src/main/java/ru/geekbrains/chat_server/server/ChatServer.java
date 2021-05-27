@@ -3,6 +3,7 @@ package ru.geekbrains.chat_server.server;
 import ru.geekbrains.april_chat.common.ChatMessage;
 import ru.geekbrains.april_chat.common.MessageType;
 import ru.geekbrains.chat_server.auth.AuthService;
+import ru.geekbrains.chat_server.auth.DatabaseAuthService;
 import ru.geekbrains.chat_server.auth.PrimitiveInMemoryAuthService;
 
 import java.io.IOException;
@@ -15,15 +16,15 @@ public class ChatServer {
     private static final int PORT = 12256;
     private List<ClientHandler> listOnlineUsers;
     private AuthService authService;
-    static long b;
 
     public ChatServer() {
         this.listOnlineUsers = new ArrayList<>();
-        this.authService = new PrimitiveInMemoryAuthService();
+//        this.authService = new PrimitiveInMemoryAuthService();
+        this.authService = new DatabaseAuthService();
     }
 
     public void start() {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try(ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Server started");
             authService.start();
 
@@ -31,9 +32,7 @@ public class ChatServer {
                 System.out.println("Waiting for connection");
                 Socket socket = serverSocket.accept();
                 System.out.println("Client connected");
-                b = System.currentTimeMillis();
                 new ClientHandler(socket, this).handle();
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +61,7 @@ public class ChatServer {
 
     public void sendPrivateMessage(ChatMessage message) {
         for (ClientHandler user : listOnlineUsers) {
-            if (user.getCurrentName().equals(message.getTo())) user.sendMessage(message);
+          if (user.getCurrentName().equals(message.getTo())) user.sendMessage(message);
         }
     }
 

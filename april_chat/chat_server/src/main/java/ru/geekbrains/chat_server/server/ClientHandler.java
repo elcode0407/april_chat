@@ -1,12 +1,7 @@
 package ru.geekbrains.chat_server.server;
 
-import javafx.application.Platform;
-import javafx.stage.Stage;
 import ru.geekbrains.april_chat.common.ChatMessage;
 import ru.geekbrains.april_chat.common.MessageType;
-import ru.geekbrains.chat.client.App;
-import ru.geekbrains.chat.client.Main;
-import ru.geekbrains.chat.client.network.NetworkService;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,12 +11,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ClientHandler {
+    private static final long AUTH_TIMEOUT = 20_000;
     private Socket socket;
     private ChatServer chatServer;
     private DataOutputStream outputStream;
     private DataInputStream inputStream;
     private String currentUsername;
-    private static final long AUTH_TIMEOUT = 10_000;
 
     public ClientHandler(Socket socket, ChatServer chatServer) {
         try {
@@ -43,9 +38,7 @@ public class ClientHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }).start();
-
     }
 
     private void readMessages() throws IOException {
@@ -60,6 +53,19 @@ public class ClientHandler {
                         break;
                     case PRIVATE:
                         chatServer.sendPrivateMessage(message);
+                        break;
+                    case CHANGE_USERNAME:
+                        System.out.printf("Got change un f: %s n %s", this.currentUsername, message.getBody());
+                        String newName = chatServer.getAuthService().changeUsername(this.currentUsername, message.getBody());
+                        ChatMessage response = new ChatMessage();
+                        if (newName == null && newName.isEmpty()) {
+                            response.setMessageType(MessageType.ERROR);
+                            response.setBody("Something went wrong!");
+                        } else {
+                            response.setMessageType(MessageType.CHANGE_USERNAME_CONFIRM);
+                            response.setBody(newName);
+                        }
+                        sendMessage(response);
                         break;
                 }
             }
@@ -82,7 +88,7 @@ public class ClientHandler {
         return this.currentUsername;
     }
 
-    private synchronized void authenticate() {
+    private void authenticate() {
 
         Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
@@ -96,11 +102,10 @@ public class ClientHandler {
                             response.setBody("Authentication timeout!\nPlease, try again later!");
                             sendMessage(response);
                             Thread.sleep(50);
-                            Platform.exit();
-                            closeHandler();
+                            socket.close();
                         }
                     }
-                } catch (InterruptedException e) {
+                } catch (InterruptedException | IOException e) {
                     e.getStackTrace();
                 }
             }
@@ -117,7 +122,7 @@ public class ClientHandler {
                 String username = chatServer.getAuthService().getUsernameByLoginAndPassword(msg.getLogin(), msg.getPassword());
                 ChatMessage response = new ChatMessage();
 
-                if (username == null) {
+                if (username.isEmpty()) {
                     response.setMessageType(MessageType.ERROR);
                     response.setBody("Wrong username or password!");
                     System.out.println("Wrong credentials");
