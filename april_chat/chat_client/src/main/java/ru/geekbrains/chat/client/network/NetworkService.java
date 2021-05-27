@@ -24,6 +24,7 @@ public class NetworkService {
             while (!Thread.currentThread().isInterrupted()){
                 try {
                     String in = inputStream.readUTF();
+
                     messageService.receive(in);
                 } catch (IOException e) {
                     e.printStackTrace();

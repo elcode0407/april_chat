@@ -23,6 +23,7 @@ public class ChatServer {
         this.authService = new DatabaseAuthService();
     }
 
+
     public void start() {
         try(ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Server started");

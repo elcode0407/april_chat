@@ -23,6 +23,7 @@ public class ClientsDatabaseService {
         createDb();
     }
 
+
     public static ClientsDatabaseService getInstance() {
         if (instance != null) return instance;
         instance = new ClientsDatabaseService();

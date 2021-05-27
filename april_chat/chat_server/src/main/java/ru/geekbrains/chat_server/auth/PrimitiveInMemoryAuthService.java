@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PrimitiveInMemoryAuthService implements AuthService {
 
+
     private List<User> users;
 
     public PrimitiveInMemoryAuthService() {

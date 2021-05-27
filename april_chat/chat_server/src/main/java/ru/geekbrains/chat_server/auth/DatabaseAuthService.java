@@ -13,6 +13,7 @@ public class DatabaseAuthService implements AuthService {
         dbService = ClientsDatabaseService.getInstance();
     }
 
+
     @Override
     public void stop() {
         dbService.closeConnection();
